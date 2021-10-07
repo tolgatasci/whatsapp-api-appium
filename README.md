@@ -13,7 +13,7 @@
         automationName='UiAutomator2',
         udid='emulator-5554')
 
-It's just normal texting for now. However, I will add picture or file sending for code  soon.
+It's just normal texting for now. However, I will add picture or file sending for code soon.
 
 Thanks for the base of the project
 
