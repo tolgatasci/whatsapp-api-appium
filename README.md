@@ -15,6 +15,6 @@
 
 It's just normal texting for now. However, I will add picture or file sending for code soon.
 
-Thanks for the base of the project
+Thanks for the base of the project.
 
 [@chaps/py_wa_adb](https://github.com/chaps/py_wa_adb)
