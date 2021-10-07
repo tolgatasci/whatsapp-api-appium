@@ -1,7 +1,11 @@
 
 
 class Config:
-
+    CAPS = dict(
+        platformName='Android',
+        platformVersion='28',
+        automationName='UiAutomator2',
+        udid='emulator-5554')
     WHATSAPP_APP_NAME = "com.whatsapp"
     WHATSAPP_APP_HOME_ACTIVITY= ".HomeActivity"
     WHATSAPP_APP_FILE_URL = "http://www.remote.com/whatsapp.apk"

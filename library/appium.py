@@ -7,11 +7,7 @@ from library.error import Error
 
 class AppiumLib(object):
     # TODO: caps appium config
-    caps = dict(
-        platformName='Android',
-        platformVersion='28',
-        automationName='UiAutomator2',
-        udid='emulator-5554')
+
     # TODO: Appium Driver
     driver = None
     # TODO : Appium server url
@@ -22,12 +18,12 @@ class AppiumLib(object):
             setattr(self, key, value)
         # TODO: if change default config set ( caps, driver_url )
         if caps:
-            self.caps = caps
+            self.config.CAPS = caps
         if driver_url:
             self.driver_url = driver_url
         # TODO: If auto_start run
         if auto_start:
-            self.driver = webdriver.Remote(self.driver_url, self.caps)
+            self.driver = webdriver.Remote(self.driver_url, self.config.CAPS)
 
     # TODO: open whatsapp app
     def open_whatsapp(self):
