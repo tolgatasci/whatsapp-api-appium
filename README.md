@@ -1,5 +1,7 @@
 # Whatsapp Api Appium
 
+#### REQUEMENTS
+    ROOT PHONE
 ### Start appium 
 
     appium  --allow-insecure=adb_shell
