@@ -1,17 +1,28 @@
 import io
 import random
 import ast
+import re
 
 class Helper(object):
+    def convert_message(self, output,regex_):
+        data = []
+        sp_out = output.split("\r\n")
+
+        for sp in sp_out:
+            data.append(re.findall(regex_, sp.encode()))
+        data = [x for x in data if x]
+        return data
 
     def uuid(self):
         import uuid
         value = uuid.uuid4()
         del uuid
         return value
-    def convert_phone(self, phone = None):
+
+    def convert_phone(self, phone=None):
         if phone:
-            return {"normal": phone,"clean":phone.replace("+",""),"remote_jid":phone.replace("+","")  + '@s.whatsapp.net'}
+            return {"normal": phone, "clean": phone.replace("+", ""),
+                    "remote_jid": phone.replace("+", "") + '@s.whatsapp.net'}
         else:
             return None
 
@@ -31,8 +42,6 @@ class Helper(object):
         return "02:00:00:%02x:%02x:%02x" % (random.randint(0, 255),
                                             random.randint(0, 255),
                                             random.randint(0, 255))
-
-
 
     def build_phone(self):
         f = io.open("data/devices.txt", mode="r", encoding="utf-8")

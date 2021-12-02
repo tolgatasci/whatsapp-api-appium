@@ -34,16 +34,17 @@ class AppiumLib(object):
         try:
             self.driver.install_app(self.config.WHATSAPP_APP_FILE_URL)
         except:
-            Error(error_code='ERR_WHATSAPP_INSTALL', message='Whatsapp ARM install failed!')
+            Error(error_code='ERR_WHATSAPP_INSTALL', message='Whatsapp ARM install failed! Trying x32_64 now...')
             # TODO: x32_x64
             try:
                 self.driver.install_app(self.config.WHATSAPP_APP_FILE_URL_32_64)
+                print("Installed Successfull whatsapp")
             except:
                 Error(error_code='ERR_WHATSAPP_INSTALL', message='Whatsapp install failed!', exit=True)
         # Todo: Kill whatsapp
 
     def adb_shell(self, command, args=[]):
-        self.driver.execute_script('mobile: shell', {
+        return self.driver.execute_script('mobile: shell', {
             'command': command,
             'args': args,
             'includeStderr': True,
@@ -80,6 +81,16 @@ class AppiumLib(object):
             pass
 
         self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, sql_query))
+
+    def read_messages(self, read_type="all"):
+        if read_type == "news":
+            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, self.config.GET_MESSAGES_YENI))
+            reader = self.helper.convert_message(reader["stdout"], self.config.MESSAGES_ROW_NEWS_REGEX)
+        else:
+            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, self.config.GET_MESSAGES))
+            reader = self.helper.convert_message(reader["stdout"], self.config.MESSAGES_ROW_REGEX)
+
+        return reader
 
     def add_phone(self, phone=None):
         sql_query = self.config.INSERT_JID.format(

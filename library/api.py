@@ -22,3 +22,7 @@ class Api(object):
         self.driver.exit_whatsapp()
         self.driver.send_message_normal(phone=phone,message=message)
         self.driver.open_whatsapp()
+    def read_messages(self,read_type = "all"):
+        self.driver.exit_whatsapp()
+        self.driver.read_messages(read_type=read_type)
+        self.driver.open_whatsapp()
