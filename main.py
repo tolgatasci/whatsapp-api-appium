@@ -8,4 +8,6 @@ if __name__ == '__main__':
     config = Config()
     helper = Helper()
     api = Api(config=config, helper=helper)
-    api.send_message_normal(phone="+905319378541", message="whats")
+    #api.send_message_normal(phone="+905319378541", message="whats")
+    #api.install_whatsapp()
+    print(api.read_messages(read_type="news"))
