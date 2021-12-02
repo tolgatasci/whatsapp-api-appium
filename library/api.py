@@ -24,5 +24,6 @@ class Api(object):
         self.driver.open_whatsapp()
     def read_messages(self,read_type = "all"):
         self.driver.exit_whatsapp()
-        self.driver.read_messages(read_type=read_type)
+        result = self.driver.read_messages(read_type=read_type)
         self.driver.open_whatsapp()
+        return result
