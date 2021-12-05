@@ -82,12 +82,18 @@ class AppiumLib(object):
 
         self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, sql_query))
 
-    def read_messages(self, read_type="all"):
+    def read_messages(self, read_type="all", filter=dict()):
         if read_type == "news":
-            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, self.config.GET_MESSAGES_YENI))
+            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH,
+                                                                        self.helper.message_filter(
+                                                                            self.config.GET_MESSAGES_YENI,
+                                                                            filter=filter, type="news")))
             reader = self.helper.convert_message(reader["stdout"], self.config.MESSAGES_ROW_NEWS_REGEX)
         else:
-            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH, self.config.GET_MESSAGES))
+            reader = self.adb_shell("su root  sqlite3 {} \"{}\"".format(self.config.DATABASE_PATH,
+                                                                        self.helper.message_filter(
+                                                                            self.config.GET_MESSAGES, filter=filter,
+                                                                            type="all")))
             reader = self.helper.convert_message(reader["stdout"], self.config.MESSAGES_ROW_REGEX)
 
         return reader

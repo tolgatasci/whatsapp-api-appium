@@ -10,4 +10,4 @@ if __name__ == '__main__':
     api = Api(config=config, helper=helper)
     #api.send_message_normal(phone="+905319378541", message="whats")
     #api.install_whatsapp()
-    print(api.read_messages(read_type="news"))
+    print(api.read_messages(read_type="news",filter=dict(phone="05467751802",from_date="1638432727000",to_date="1838432727000")))

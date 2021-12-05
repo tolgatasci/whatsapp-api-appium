@@ -3,8 +3,9 @@ import random
 import ast
 import re
 
+
 class Helper(object):
-    def convert_message(self, output,regex_):
+    def convert_message(self, output, regex_):
         data = []
         sp_out = output.split("\r\n")
 
@@ -12,6 +13,22 @@ class Helper(object):
             data.append(re.findall(regex_, sp.encode()))
         data = [x for x in data if x]
         return data
+
+    def message_filter(self, query, filter=dict(), type="all"):
+        if "where" not in query:
+            query = query + " where "
+        required_and = ""
+        if ("phone" in filter):
+            query = query + "key_remote_jid LIKE '%" + str(
+                filter["phone"]) + "%'" if type == "all" else query + " and cv.raw_string_jid LIKE '%" + str(
+                filter["phone"]) + "%'"
+            required_and = " and "
+        if ("from_date" in filter):
+            query = query + required_and +" timestamp>="+str(filter["from_date"])+""
+        if ("to_date" in filter and "from_date" in filter):
+            query = query +" and timestamp<="+str(filter["to_date"])+""
+
+        return query
 
     def uuid(self):
         import uuid

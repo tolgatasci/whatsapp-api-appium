@@ -17,13 +17,13 @@ class Api(object):
         self.driver.exit_whatsapp()
     # TODO: Add Contact @phone @name
     def add_phone(self):
-        self.driver.add_phone(phone="+905467751802")
+        self.driver.add_phone(phone="+905319378541")
     def send_message_normal(self,phone = None, message = None):
         self.driver.exit_whatsapp()
         self.driver.send_message_normal(phone=phone,message=message)
         self.driver.open_whatsapp()
-    def read_messages(self,read_type = "all"):
+    def read_messages(self,read_type = "all",filter=dict()):
         self.driver.exit_whatsapp()
-        result = self.driver.read_messages(read_type=read_type)
+        result = self.driver.read_messages(read_type=read_type,filter=filter)
         self.driver.open_whatsapp()
         return result

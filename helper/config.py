@@ -24,8 +24,7 @@ class Config:
         return {k: data[k] for k in set(list(data.keys())) - set(keys)}
 
     MESSAGES_ROW_REGEX =  b"(?P<_id>\d+)\|(?P<key_remote_jid>.*?)\|(?P<key_from_me>\d+)\|(?P<key_id>.*?)\|(?P<status>\d+)\|(?P<data>[\s\S]+?)\|(?P<timestamp>\d+)"
-    MESSAGES_ROW_NEWS_REGEX = b"(?P<_id>\d+)\|(?P<hidden>\d+)\|(?P<key_remote_jid>.*?)\|(?P<xx>\d+)\|(?P<yy>\d+)\|(?P<data>[\s\S]+?)\|(?P<xxx>\d+)"
-    #cv._id, cv.hidden, cv.raw_string_jid, cv.last_message_row_id, cv.last_read_message_row_id, amv.data, amv._id   AS    bizim_id
+    MESSAGES_ROW_NEWS_REGEX = b"(?P<_id>\d+)\|(?P<hidden>\d+)\|(?P<key_remote_jid>.*?)\|(?P<last_message_row_id>\d+)\|(?P<last__readmessage_row_id>\d+)\|(?P<data>[\s\S]+?)\|(?P<amv_id>\d+)"
 
 
     MESSAGES_MEDIA_REGEX = b"(?P<_id>\d+)\|(?P<key_remote_jid>.*?)\|(?P<media_url>[\s\S]+?)\|(?P<media_wa_type>\d+)\|(?P<media_mime_type>[\s\S]+?)\|(?P<media_name>[\s\S]+?)\|(?P<media_enc_hash>[\s\S]+?)\|(?P<thumb_image>[\s\S]+?)\|\n"
